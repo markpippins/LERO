@@ -1,0 +1,6 @@
+emit:
+  - lero
+
+options:
+  lero:
+    output-dir: "{project-root}/output"
