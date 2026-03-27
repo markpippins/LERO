@@ -1,4 +1,4 @@
-# Homelab Infrastructure Generator
+# Linux Environment Resource Orchestor
 
 This repository contains a **TypeSpec-based generator** for managing and deploying your home lab infrastructure, including:
 
