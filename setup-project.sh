@@ -15,7 +15,7 @@ touch "$ROOT/src/models/hosts.tsp" \
       "$ROOT/src/operations/generateSamba.tsp" \
       "$ROOT/src/operations/generateNFS.tsp" \
       "$ROOT/src/operations/helpers.tsp" \
-      "$ROOT/src/homelab_config.json"
+      "$ROOT/src/lero_config.json"
 
 # --- projections ---
 mkdir -p "$ROOT/projections/docker/v1" "$ROOT/projections/docker/v2"
@@ -32,7 +32,7 @@ touch "$ROOT/output/tasks.json" \
 
 # --- scripts ---
 mkdir -p "$ROOT/scripts"
-touch "$ROOT/scripts/build.sh" "$ROOT/scripts/homelab.sh"
+touch "$ROOT/scripts/build.sh" "$ROOT/scripts/lero.sh"
 
 # --- docs ---
 mkdir -p "$ROOT/docs"

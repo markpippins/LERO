@@ -1,9 +1,9 @@
-import type { HomelabConfig, Volume } from "./types.js";
+import type { LEROConfig, Volume } from "./types.js";
 
 /**
  * Generates smb.conf for Samba file sharing
  */
-export function generateSambaConfig(config: HomelabConfig): string {
+export function generateSambaConfig(config: LEROConfig): string {
   const lines: string[] = [
     "[global]",
     "    workgroup = WORKGROUP",

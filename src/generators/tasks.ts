@@ -1,9 +1,9 @@
-import type { HomelabConfig, Task, TasksFile } from "./types.js";
+import type { LEROConfig, Task, TasksFile } from "./types.js";
 
 /**
  * Generates tasks.json with deployment tasks
  */
-export function generateTasks(config: HomelabConfig): TasksFile {
+export function generateTasks(config: LEROConfig): TasksFile {
   const tasks: Task[] = [];
 
   // Task 1: Create directories on all hosts

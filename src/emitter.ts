@@ -7,15 +7,15 @@ import {
   generateDockerServices,
   generateSambaConfig,
   generateNFSExports,
-  type HomelabConfig,
+  type LEROConfig,
 } from "./generators/index.js";
 
 export async function $onEmit(context: EmitContext) {
   const program = context.program;
   const projectRoot = process.cwd();
-  const configPath = path.resolve(projectRoot, "src/homelab_config.json");
+  const configPath = path.resolve(projectRoot, "src/lero_config.json");
 
-  let config: HomelabConfig;
+  let config: LEROConfig;
   try {
     const configContent = fs.readFileSync(configPath, "utf-8");
     config = JSON.parse(configContent);
@@ -23,7 +23,7 @@ export async function $onEmit(context: EmitContext) {
     program.reportDiagnostic({
       code: "lero/config-not-found",
       severity: "error",
-      message: `Could not read homelab config from ${configPath}`,
+      message: `Could not read LERO config from ${configPath}`,
       target: program as any,
     });
     return;

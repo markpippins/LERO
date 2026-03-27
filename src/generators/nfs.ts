@@ -1,9 +1,9 @@
-import type { HomelabConfig, Volume } from "./types.js";
+import type { LEROConfig, Volume } from "./types.js";
 
 /**
  * Generates /etc/exports for NFS shares
  */
-export function generateNFSExports(config: HomelabConfig): string {
+export function generateNFSExports(config: LEROConfig): string {
   const lines: string[] = [];
   const nfsVolumes = config.volumes.filter((v) => v.type === "nfs");
 
@@ -18,7 +18,7 @@ export function generateNFSExports(config: HomelabConfig): string {
   return lines.join("\n");
 }
 
-function getHostIps(config: HomelabConfig, volume: Volume): string[] {
+function getHostIps(config: LEROConfig, volume: Volume): string[] {
   return volume.hosts
     .map((hostName) => {
       const host = config.hosts.find((h) => h.name === hostName);

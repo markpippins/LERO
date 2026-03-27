@@ -13,7 +13,7 @@ echo "==== LERO: Build Phase ===="
 echo "==== LERO: Deploy Phase ===="
 
 # Extract host IPs from JSON (simple approach)
-HOSTS=$(jq -r '.hosts[].ip' "$SCRIPT_DIR/../src/homelab_config.json")
+HOSTS=$(jq -r '.hosts[].ip' "$SCRIPT_DIR/../src/lero_config.json")
 
 for host in $HOSTS; do
   echo "---- Deploying to $host ----"

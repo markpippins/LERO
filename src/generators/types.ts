@@ -1,5 +1,5 @@
 /**
- * Common types for LERO homelab configuration
+ * Common types for LERO configuration
  */
 
 export interface Host {
@@ -49,7 +49,7 @@ export interface Network {
   attach_hosts: string[];
 }
 
-export interface HomelabConfig {
+export interface LEROConfig {
   hosts: Host[];
   volumes: Volume[];
   services: Service[];
@@ -65,3 +65,4 @@ export interface Task {
 export interface TasksFile {
   tasks: Task[];
 }
+

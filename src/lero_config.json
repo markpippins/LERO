@@ -1,0 +1,241 @@
+{
+  "hosts": [
+    {
+      "name": "plutonium",
+      "ip": "192.168.1.10",
+      "roles": ["file_server", "experimental"],
+      "services": [],
+      "volumes": ["media_pool", "docker_volumes"],
+      "networks": ["lan"],
+      "os": "debian13"
+    },
+    {
+      "name": "bohrium",
+      "ip": "192.168.1.11",
+      "roles": ["swarm_manager", "plex", "arrs"],
+      "services": ["plex", "sonarr", "radarr"],
+      "volumes": ["media_pool", "downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "dietpi"
+    },
+    {
+      "name": "thorium",
+      "ip": "192.168.1.12",
+      "roles": ["swarm_manager", "plex", "arrs"],
+      "services": ["plex", "sonarr", "radarr"],
+      "volumes": ["media_pool", "downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "dietpi"
+    },
+    {
+      "name": "sodium",
+      "ip": "192.168.1.13",
+      "roles": ["swarm_manager", "experimental", "desktop"],
+      "services": [],
+      "volumes": ["media_pool", "experimental_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "ubuntu"
+    },
+    {
+      "name": "iridium",
+      "ip": "192.168.1.14",
+      "roles": ["swarm_manager", "portainer", "dev"],
+      "services": ["portainer"],
+      "volumes": ["media_pool", "docker_volumes"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "raspbian"
+    },
+    {
+      "name": "cesium",
+      "ip": "192.168.1.15",
+      "roles": ["swarm_worker"],
+      "services": [],
+      "volumes": ["media_pool", "downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "raspbian"
+    },
+    {
+      "name": "deuterium",
+      "ip": "192.168.1.16",
+      "roles": ["swarm_worker"],
+      "services": [],
+      "volumes": ["media_pool", "downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "raspbian"
+    },
+    {
+      "name": "aluminium",
+      "ip": "192.168.1.17",
+      "roles": ["swarm_worker"],
+      "services": [],
+      "volumes": ["media_pool", "downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "raspbian"
+    },
+    {
+      "name": "barium",
+      "ip": "192.168.1.18",
+      "roles": ["nfs_server", "build_in_progress"],
+      "services": [],
+      "volumes": ["media_pool", "docker_volumes"],
+      "networks": ["lan"],
+      "os": "raspbian"
+    },
+    {
+      "name": "lithium",
+      "ip": "192.168.1.19",
+      "roles": ["swarm_worker", "arrs"],
+      "services": ["sonarr", "radarr"],
+      "volumes": ["downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "raspbian"
+    },
+    {
+      "name": "thallium",
+      "ip": "192.168.1.20",
+      "roles": ["swarm_worker", "arrs"],
+      "services": ["sonarr", "radarr"],
+      "volumes": ["downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "raspbian"
+    },
+    {
+      "name": "vanadium",
+      "ip": "192.168.1.21",
+      "roles": ["plex_server", "arrs"],
+      "services": ["plex", "sonarr", "radarr"],
+      "volumes": ["media_pool", "downloads_pool"],
+      "networks": ["lan", "overlay_swarm"],
+      "os": "raspbian"
+    },
+    {
+      "name": "osmium",
+      "ip": "192.168.1.22",
+      "roles": ["ansible", "experimental"],
+      "services": [],
+      "volumes": [],
+      "networks": ["lan"],
+      "os": "armbian"
+    }
+  ],
+  "volumes": [
+    {
+      "name": "media_pool",
+      "type": "nfs",
+      "path": "/mnt/data_pool/media",
+      "hosts": ["plutonium","bohrium","thorium","sodium","iridium","cesium","deuterium","aluminium","barium","lithium","thallium","vanadium"],
+      "permissions_strategy": {
+        "description": "Align container and host users",
+        "user": "pi",
+        "uid": 1000,
+        "gid": 1000,
+        "chmod_folder_mode": "775",
+        "chown_command": "sudo chown -R 1000:1000 /mnt/data_pool/media",
+        "chmod_command": "sudo chmod -R 775 /mnt/data_pool/media"
+      }
+    },
+    {
+      "name": "downloads_pool",
+      "type": "nfs",
+      "path": "/mnt/data_pool/downloads",
+      "hosts": ["bohrium","thorium","cesium","deuterium","aluminium","lithium","thallium","vanadium"],
+      "permissions_strategy": {
+        "description": "Align container and host users",
+        "user": "pi",
+        "uid": 1000,
+        "gid": 1000,
+        "chmod_folder_mode": "775",
+        "chown_command": "sudo chown -R 1000:1000 /mnt/data_pool/downloads",
+        "chmod_command": "sudo chmod -R 775 /mnt/data_pool/downloads"
+      }
+    },
+    {
+      "name": "docker_volumes",
+      "type": "local",
+      "path": "/mnt/data_pool/docker_volumes",
+      "hosts": ["plutonium","barium","iridium"],
+      "permissions_strategy": {
+        "description": "Docker local volumes",
+        "user": "pi",
+        "uid": 1000,
+        "gid": 1000,
+        "chmod_folder_mode": "775",
+        "chown_command": "sudo chown -R 1000:1000 /mnt/data_pool/docker_volumes",
+        "chmod_command": "sudo chmod -R 775 /mnt/data_pool/docker_volumes"
+      }
+    },
+    {
+      "name": "experimental_pool",
+      "type": "local",
+      "path": "/mnt/data_pool/experimental",
+      "hosts": ["sodium"],
+      "permissions_strategy": {
+        "description": "Experimental projects",
+        "user": "nano",
+        "uid": 1001,
+        "gid": 1001,
+        "chmod_folder_mode": "775",
+        "chown_command": "sudo chown -R 1001:1001 /mnt/data_pool/experimental",
+        "chmod_command": "sudo chmod -R 775 /mnt/data_pool/experimental"
+      }
+    }
+  ],
+  "services": [
+    {
+      "name": "plex",
+      "container_image": "linuxserver/plex:latest",
+      "volumes": ["media_pool","downloads_pool"],
+      "ports": ["32400:32400"],
+      "environment": {"PUID":"1000","PGID":"1000","TZ":"America/New_York"},
+      "restart_policy":"unless-stopped",
+      "swarm": false,
+      "k8s": false
+    },
+    {
+      "name": "sonarr",
+      "container_image": "linuxserver/sonarr:latest",
+      "volumes": ["downloads_pool"],
+      "ports": ["8989:8989"],
+      "environment": {"PUID":"1000","PGID":"1000","TZ":"America/New_York"},
+      "restart_policy":"unless-stopped",
+      "swarm": false,
+      "k8s": false
+    },
+    {
+      "name": "radarr",
+      "container_image": "linuxserver/radarr:latest",
+      "volumes": ["downloads_pool"],
+      "ports": ["7878:7878"],
+      "environment": {"PUID":"1000","PGID":"1000","TZ":"America/New_York"},
+      "restart_policy":"unless-stopped",
+      "swarm": false,
+      "k8s": false
+    },
+    {
+      "name": "portainer",
+      "container_image": "portainer/portainer-ce:latest",
+      "volumes": ["docker_volumes"],
+      "ports": ["9000:9000"],
+      "environment": {},
+      "restart_policy":"always",
+      "swarm": true,
+      "k8s": false
+    }
+  ],
+  "networks": [
+    {
+      "name":"lan",
+      "type":"bridge",
+      "subnet":"192.168.1.0/24",
+      "gateway":"192.168.1.1",
+      "attach_hosts":["plutonium","bohrium","thorium","sodium","iridium","cesium","deuterium","aluminium","barium","lithium","thallium","vanadium","osmium"]
+    },
+    {
+      "name":"overlay_swarm",
+      "type":"overlay",
+      "subnet":"10.0.0.0/24",
+      "gateway":"10.0.0.1",
+      "attach_hosts":["bohrium","thorium","sodium","iridium","cesium","deuterium","aluminium","lithium","thallium","vanadium"]
+    }
+  ]
+}

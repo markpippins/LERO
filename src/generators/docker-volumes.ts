@@ -1,9 +1,9 @@
-import type { HomelabConfig, Volume } from "./types.js";
+import type { LEROConfig, Volume } from "./types.js";
 
 /**
  * Generates docker-volumes.yml
  */
-export function generateDockerVolumes(config: HomelabConfig): string {
+export function generateDockerVolumes(config: LEROConfig): string {
   const lines: string[] = ["version: '3.8'", "", "volumes:"];
 
   for (const volume of config.volumes) {
@@ -27,7 +27,7 @@ export function generateDockerVolumes(config: HomelabConfig): string {
 }
 
 function findNfsServerHost(
-  config: HomelabConfig,
+  config: LEROConfig,
   volume: Volume
 ): { ip: string } | undefined {
   return config.hosts.find(

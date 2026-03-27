@@ -1,7 +1,7 @@
 # Getting Started with TypeSpec in LERO
 
 LERO is **built around TypeSpec** — a type-driven modeling and code generation system.  
-TypeSpec gives LERO **strong typing, validation, and automation**, making your homelab configuration safer and easier to deploy.
+TypeSpec gives LERO **strong typing, validation, and automation**, making your configuration safer and easier to deploy.
 
 This guide shows you how to use TypeSpec to generate your infrastructure from JSON configuration.
 

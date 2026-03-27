@@ -14,7 +14,7 @@ echo "==== Step 3: Cleaning output directory ===="
 rm -rf "$OUTPUT_DIR"/*
 
 echo "==== Step 4: Compile TypeSpec and run emitter ===="
-npx tsp compile "$SRC_DIR/main.tsp"
+npx tsp compile "$SRC_DIR/lero.tsp"
 
 echo "==== Step 5: Verify output files ===="
 

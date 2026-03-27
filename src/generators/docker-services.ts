@@ -1,9 +1,9 @@
-import type { HomelabConfig, Service } from "./types.js";
+import type { LEROConfig, Service } from "./types.js";
 
 /**
  * Generates docker-services.yml
  */
-export function generateDockerServices(config: HomelabConfig): string {
+export function generateDockerServices(config: LEROConfig): string {
   const lines: string[] = ["version: '3.8'", "", "services:"];
 
   for (const service of config.services) {

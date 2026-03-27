@@ -13,7 +13,7 @@ The generator produces all necessary configuration files and can deploy them rem
 
 ## **Features**
 
-- **Single source of truth:** All hosts, services, volumes, and shares defined in `homelab_config.json`  
+- **Single source of truth:** All hosts, services, volumes, and shares defined in `lero_config.json`  
 - **Dependency tracking:** Directories → permissions → Samba → Docker  
 - **Remote deployment:** One script runs commands on all hosts via SSH  
 - **Scalable:** Supports dozens of hosts and multiple Samba shares or Docker volumes  
