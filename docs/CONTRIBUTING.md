@@ -1,5 +1,5 @@
 
-# Contributing to Homelab Infrastructure Generator
+# Contributing to LERO
 
 We welcome contributions! To ensure a smooth workflow:
 
