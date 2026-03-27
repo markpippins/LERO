@@ -1,4 +1,4 @@
-# Linux Environment Resource Orchestor
+# Linux Environment Resource Orchestrator
 
 This repository contains a **TypeSpec-based generator** for managing and deploying your home lab infrastructure, including:
 
