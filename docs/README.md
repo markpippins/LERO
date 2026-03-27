@@ -7,7 +7,7 @@ This repository contains a **TypeSpec-based generator** for managing and deployi
 - Raspberry Pi / Odroid SBC clusters  
 - Automatic permission and directory setup  
 
-The generator produces all necessary configuration files and can deploy them remotely from a central admin node (Osmium).
+The generator produces all necessary configuration files and can deploy them remotely from a central admin node.
 
 ---
 
